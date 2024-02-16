@@ -4,9 +4,9 @@
     },
     "inbounds": [
         {
-            "tag": "VMESS_INBOUND",
+            "tag": "VMESS_WS",
             "listen": "0.0.0.0",
-            "port": 2053,
+            "port": 2001,
             "protocol": "vmess",
             "settings": {
                 "clients": []
@@ -16,56 +16,27 @@
                 "wsSettings": {
                     "path": "/vmess"
                 }
-                // ,
-                // "security": "tls",
-                // "tlsSettings": {
-                //     "serverName": "sg1.jateng.tech",
-                //     "certificates": [
-                //         {
-                //             "ocspStapling": 3600,
-                //             "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
-                //             "keyFile": "/var/lib/marzban/certs/key.pem"
-                //         }
-                //     ],
-                //     "minVersion": "1.2",
-                //     "cipherSuites": "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
-                // }
             }
         },
         {
-            "tag": "VLESS_INBOUND",
+            "tag": "VMESS_GRPC",
             "listen": "0.0.0.0",
-            "port": 2083,
-            "protocol": "vless",
+            "port": 2002,
+            "protocol": "vmess",
             "settings": {
-                "clients": [],
-                "decryption": "none"
+                "clients": []
             },
             "streamSettings": {
-                "network": "ws",
-                "wsSettings": {
-                    "path": "/vless"
+                "network": "grpc",
+                "grpcSettings": {
+                    "serviceName": "vmess-grpc"
                 }
-                // ,
-                // "security": "tls",
-                // "tlsSettings": {
-                //     "serverName": "SERVER_NAME",
-                //     "certificates": [
-                //         {
-                //             "ocspStapling": 3600,
-                //             "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
-                //             "keyFile": "/var/lib/marzban/certs/key.pem"
-                //         }
-                //     ],
-                //     "minVersion": "1.2",
-                //     "cipherSuites": "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
-                // }
             }
         },
         {
-            "tag": "TROJAN_INBOUND",
+            "tag": "TROJAN_WS",
             "listen": "0.0.0.0",
-            "port": 2087,
+            "port": 2003,
             "protocol": "trojan",
             "settings": {
                 "clients": []
@@ -73,44 +44,33 @@
             "streamSettings": {
                 "network": "ws",
                 "wsSettings": {
-                    "path": "/trojan-ws"
+                	"path": "/trojan-ws"
                 }
-                // ,
-                // "security": "tls",
-                // "tlsSettings": {
-                //     "serverName": "SERVER_NAME",
-                //     "certificates": [
-                //         {
-                //             "ocspStapling": 3600,
-                //             "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
-                //             "keyFile": "/var/lib/marzban/certs/key.pem"
-                //         }
-                //     ],
-                //     "minVersion": "1.2",
-                //     "cipherSuites": "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
-                // }
             }
         },
         {
-            "tag": "SHADOWSOCKS_INBOUND",
+            "tag": "TROJAN_GRPC",
             "listen": "0.0.0.0",
-            "port": 2016,
-            "protocol": "shadowsocks",
+            "port": 2004,
+            "protocol": "trojan",
             "settings": {
-                "clients": [],
-                "network": "tcp,udp"
+                "clients": []
+            },
+            "streamSettings": {
+                "network": "grpc",
+                "grpcSettings": {
+                	"serviceName": "trojan-grpc"
+                }
             }
         }
     ],
     "outbounds": [
         {
             "protocol": "freedom",
-            "settings": {},
             "tag": "DIRECT"
         },
         {
             "protocol": "blackhole",
-            "settings": {},
             "tag": "BLOCK"
         }
     ],
@@ -120,12 +80,11 @@
                 "ip": [
                     "geoip:private"
                 ],
-                "outboundTag": "BLOCK",
-                "type": "field"
-            },
-            {
                 "domain": [
-                    "localhost"
+                    "geosite:private"
+                ],
+                "protocol": [
+                    "bittorrent"
                 ],
                 "outboundTag": "BLOCK",
                 "type": "field"
