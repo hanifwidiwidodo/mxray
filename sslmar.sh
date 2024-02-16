@@ -36,7 +36,7 @@ sleep 0.5
 sudo apt install nginx -y
 cd
 curl -fsSL https://get.docker.com | sh
-wget -q -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/Agunxzzz/MarXray/main/xray.conf"
+wget -q -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/hanifwidiwidodo/mxray/main/xray.conf"
 #sed -i 's/sg1.jateng.tech/${domain}/g' /etc/nginx/conf.d/xray.conf
 #wget -q -O tesidom.sh https://raw.githubusercontent.com/Agunxzzz/MarXray/main/tesidom.sh && chmod +x tesidom.sh && ./tesidom.sh
 sleep 1
@@ -47,8 +47,7 @@ cd
 ##wget -qO- https://github.com/Gozargah/Marzban-examples/releases/latest/download/multi-port.tar.gz | tar xz --xform 's/multi-port/marzban/' && cd marzban
 wget -qO- https://github.com/Agunxzzz/MarXray/raw/main/multi-port.tar.gz | tar xz --xform 's/multi-port/marzban/' && cd marzban
 rm -r xray_config.json
-wget -q -O /root/marzban/xray_config.json "https://raw.githubusercontent.com/Agunxzzz/MarXray/main/xray_config.json"
+wget -q -O /root/marzban/xray_config.json "https://raw.githubusercontent.com/hanifwidiwidodo/mxray/main/xray_config.json"
 docker compose up -d
 clear 
 echo "Install telah selesai"
-echo "Silahkan buka panel di http://domainmu:8880/dashboard"
