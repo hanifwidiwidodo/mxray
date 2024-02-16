@@ -45,7 +45,7 @@ wget -q -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Agunxzzz/Min
 service nginx restart
 cd
 ##wget -qO- https://github.com/Gozargah/Marzban-examples/releases/latest/download/multi-port.tar.gz | tar xz --xform 's/multi-port/marzban/' && cd marzban
-wget -qO- https://github.com/Agunxzzz/MarXray/raw/main/multi-port.tar.gz | tar xz --xform 's/multi-port/marzban/' && cd marzban
+wget -qO- https://github.com/hanifwidiwidodo/mxray/raw/main/multi-port.tar.gz | tar xz --xform 's/multi-port/marzban/' && cd marzban
 rm -r xray_config.json
 wget -q -O /root/marzban/xray_config.json "https://raw.githubusercontent.com/hanifwidiwidodo/mxray/main/xray_config.json"
 docker compose up -d
