@@ -1,10 +1,11 @@
 mkdir /etc/xray
 apt install socat -y
-echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1│${NC}               • INPUT DOMAIN •                 ${NC} $COLOR1│$NC"
-echo -e "$COLOR1└─────────────────────────────────────────────────┘${NC}"
-read -rp "Input ur domain : " -e pp
-    echo "$pp" > /etc/xray/domain 
+echo -e "$COLOR1┌────────────────────────────────────────────────────┐${NC}"
+echo -e "$COLOR1│${NC} • Installasi Panel ClashTunnel • ${NC} $COLOR1│$NC"
+echo -e "$COLOR1└────────────────────────────────────────────────────┘${NC}"
+read -rp "Masukkan Domain : " -e pp
+read -rp "Masukkan Email Aktif: " -e email
+echo "$pp" > /etc/xray/domain 
 echo "Silahkan pilih menu Gen-Cert untuk mendapatkan cert domain baru"
 echo "Press any key to back on menu"
 clear
@@ -23,7 +24,7 @@ sleep 2
 yum install curl socat -y
 curl https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-~/.acme.sh/acme.sh --register-account -m resaananta42@gmail.com
+~/.acme.sh/acme.sh --register-account -m $email
 ~/.acme.sh/acme.sh --issue -d $domain --standalone
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /etc/xray/xray.key --fullchain-file /etc/xray/xray.crt
 
@@ -47,4 +48,4 @@ rm -r xray_config.json
 wget -q -O /root/marzban/xray_config.json "https://raw.githubusercontent.com/hanifwidiwidodo/mxray/main/xray_config.json"
 docker compose up -d
 clear 
-echo "Install telah selesai"
+echo "Install telah selesai silahkan reboot server"
