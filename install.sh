@@ -48,4 +48,5 @@ rm -r xray_config.json
 wget -q -O /root/marzban/xray_config.json "https://raw.githubusercontent.com/hanifwidiwidodo/mxray/main/xray_config.json"
 docker compose up -d
 clear 
-echo "Install telah selesai silahkan reboot server"
+echo "Install telah selesai, server sudah bisa di hubungkan ke web panel"
+echo "Silahkan reboot server terlebih dahulu"
